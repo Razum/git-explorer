@@ -1,0 +1,9 @@
+.header {
+  @include bg-cover;
+  background-image: url('./bg.png');
+  height: 20rem;
+}
+
+.topNav {
+  background-color: rgba(color(white), 0.2);
+}

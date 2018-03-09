@@ -1,24 +1,25 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import history from './services/history';
 
 import Header from './components/Header';
+
+import Home from './containers/Home';
+import User from './containers/User';
+import NoMatch from './containers/NoMatch';
 
 
 const App = () => (
   <div className="app-node">
     <Header />
     <Router history={history}>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro red">
-          56464532423423
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/users/:userName" component={User} />
+        <Redirect from="/users" to="/" />
+        <Route component={NoMatch} />
+      </Switch>
     </Router>
   </div>
 );

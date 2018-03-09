@@ -1,0 +1,38 @@
+.usercard {
+  background-color: rgba(214, 212, 209, 0.28);
+  border-radius: 0;
+  padding: 1.25em;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid #efefef
+}
+
+.field {
+  margin-bottom: 0.5rem;
+}
+
+.photo {
+  padding-bottom: 120%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 1.5em 0.5em 0.5em;
+
+  > svg {
+    margin-right: 0.75em;
+  }
+}

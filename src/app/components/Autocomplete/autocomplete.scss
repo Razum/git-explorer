@@ -1,0 +1,31 @@
+.autocomplete {
+  position: relative;
+  width: 100%;
+
+  input[type='text'] {
+    width: 100%;
+    height: 3rem;
+    line-height: 3rem;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+.label {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding-left: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.results {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateY(100%);
+  width: 100%;
+}

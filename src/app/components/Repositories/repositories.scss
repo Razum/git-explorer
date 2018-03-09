@@ -1,0 +1,17 @@
+.repositories {
+  max-height: 30rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.load-more {
+  width: 100%;
+  background-color: #e5e5e5;
+  border: 1px solid #aeaeae;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.75em 1em;
+  cursor: pointer;
+  margin: 1.5em 0;
+}

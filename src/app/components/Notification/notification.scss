@@ -1,0 +1,17 @@
+.notification {
+  position: relative;
+  background-color: rgba(255, 91, 0, 0.75);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 400;
+  padding: 0.75em 1em;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

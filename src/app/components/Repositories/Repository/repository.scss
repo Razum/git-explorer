@@ -1,0 +1,40 @@
+.repository {
+  margin-bottom: 0.5em;
+  background-color: #efefef;
+  border: 1px solid darken(#efefef, 5);
+  padding: 0.5em 1em;
+  border-radius: 3px;
+}
+
+.title {
+  display: inline-block;
+  color: #222;
+  text-decoration: underline;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.description {
+  font-size: 0.75em;
+  font-weight: 400;
+}
+
+.stats {
+  display: flex;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.75em 0;
+  margin-right: 2em;
+
+  svg {
+    margin-right: 0.5em;
+  }
+}

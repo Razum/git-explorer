@@ -1,40 +1,44 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'lodash/debounce';
+import { Link } from 'react-router-dom';
 import style from './autocomplete.scss';
 
 class Autocomplete extends PureComponent {
-  constructor(props) {
-    super();
-    this.state = {};
-    this.delayedOnChange = debounce(evt => this.props.onChange(evt.target.value), props.debounce);
-  }
-
   onChange = (evt) => {
-    evt.persist();
-    this.delayedOnChange(evt);
+    this.props.onChange(evt.target.value);
   }
-
-  onSelect = (item) => {
-    this.props.onSelect(item);
-  }
-
   get results() {
-    const { items, renderResults, renderItem } = this.props;
-    if (renderResults) {
-      return <div className={style.results}>{renderResults(items)}</div>;
+    const { items, value } = this.props;
+    if (!items.length && value.length) {
+      return <div className="center py4">No users found</div>;
     }
-    if (!items.length) {
+    if (!value.length) {
       return null;
     }
-    return <div className={style.results}>{items.map(item => renderItem(item))}</div>;
+    return <div className={style.results}>{items.map(item => this.renderItem(item))}</div>;
   }
 
+  renderItem({ login, avatar_url }) {
+    const bgImage = { backgroundImage: `url(${avatar_url})` };
+    return (
+      <Link className={style.item} key={login} to={`/users/${login}`}>
+        <div className={style.avatar} style={bgImage} />
+        {login}
+      </Link>
+    );
+  }
   render() {
+    const { value, label, placeholder } = this.props;
     return (
       <div className={style.autocomplete}>
-        <label className={style.label} htmlFor="autocomplete">{this.props.label}</label>
-        <input id="autocomplete" type="text" placeholder={this.props.placeholder} onChange={this.onChange} />
+        <label className={style.label} htmlFor="autocomplete">{label}</label>
+        <input
+          id="autocomplete"
+          type="text"
+          placeholder={placeholder}
+          value={value}
+          onChange={this.onChange}
+        />
         {this.results}
       </div>
     );
@@ -42,29 +46,16 @@ class Autocomplete extends PureComponent {
 }
 
 Autocomplete.propTypes = {
+  value: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  onChange: PropTypes.func.isRequired,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func,
-  onSelect: PropTypes.func,
-  renderItem: PropTypes.func,
-  renderResults: PropTypes.func.isRequired,
-  debounce: PropTypes.number,
-  items: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-  })),
 };
 
 Autocomplete.defaultProps = {
   label: '',
   placeholder: '',
-  debounce: 1000,
-  onChange() {
-  },
-  onSelect() {
-  },
-
-  renderItem: item => <div onSelect={() => this.onSelect(item)}>{item.label}</div>,
-  items: [],
 };
 
 export default Autocomplete;

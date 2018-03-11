@@ -19,15 +19,23 @@
 }
 
 .topNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   background-color: rgba(color(black), 0.5);
   position: relative;
   padding: 0.75rem 1rem;
   z-index: 1;
 
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
   > a {
     color: color(white);
     text-decoration: none;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
 
     &:hover {
       text-decoration: underline;

@@ -33,14 +33,11 @@ class User extends Component {
     this.props.fetchUser(userName)
       .then(() => this.fetchRepos());
   }
-  fetchRepos() {
+  fetchRepos = () => {
     this.props.fetchUserRepos(this.userName, {
       sort: 'updated', direction: 'desc', per_page: PER_PAGE, page: this.page,
     });
     this.page += 1;
-  }
-  loadMore = () => {
-    this.fetchRepos();
   }
   render() {
     if (!this.props.user) {
@@ -61,7 +58,7 @@ class User extends Component {
             <Repositories
               isFetching={this.props.isReposFetching}
               items={this.props.repos}
-              loadMore={this.loadMore}
+              loadMore={this.fetchRepos}
               hasMore={!(this.props.repos.length % PER_PAGE)}
             />
           </div>

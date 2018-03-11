@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './location.scss';
+import style from './location.scss';
 import { getStaticMap } from '../../../services/utils';
 
 const Location = ({ location }) => {
   const mapStyle = { backgroundImage: `url(${getStaticMap(location)})` };
   return (
-    <div className="location">
+    <div className={style.location}>
       <strong>Location:</strong>
-      <div className="map" style={mapStyle} />
+      <div className={style.map} style={mapStyle} />
     </div>
   );
 };

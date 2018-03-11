@@ -25,7 +25,7 @@ class UserCard extends PureComponent {
   getField(fieldValue, fieldLabel) {
     return fieldValue ?
       <div className={style.field}>
-        <strong>{fieldLabel}:</strong>
+        <strong>{fieldLabel}: </strong>
         {fieldValue}
       </div>
       : null;
@@ -56,18 +56,18 @@ class UserCard extends PureComponent {
     return (
       <div className={style.usercard}>
         <div className="row">
-          <div className="col w-100 w-sm-33 mb3">
+          <div className="col w-100 w-sm-50 mb3">
             <div className={style.photo} style={photo} />
           </div>
-          <div className="col w-100 w-sm-66">
+          <div className="col w-100 w-sm-50">
             {this.getField(name, 'Name')}
             {this.getField(login, 'Login')}
             {email ?
-              <div className={style.field}><strong>Email:</strong> <a href={`mailto:${email}`}>{email}</a></div> : null}
+              <div className={style.field}><strong>Email: </strong> <a href={`mailto:${email}`}>{email}</a></div> : null}
             {
               blog ?
                 <div className={style.field}>
-                  <strong>Website:</strong>
+                  <strong>Website: </strong>
                   <a href={blog}>{blog}</a>
                 </div> :
                 null

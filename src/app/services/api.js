@@ -20,7 +20,7 @@ export function getEndpoint(endpoint = '') {
  * @return {Promise}
  */
 export function searchUsers(params) {
-  return axios.get(getEndpoint('/search/users'), { params }).then(response => response.data);
+  return axios.get(getEndpoint('/search/users'), { params }).then((response) => response.data);
 }
 
 /**
@@ -29,7 +29,7 @@ export function searchUsers(params) {
  * @return {Promise}
  */
 export function getUserInfo(userName) {
-  return axios.get(getEndpoint(`/users/${userName}`)).then(response => response.data);
+  return axios.get(getEndpoint(`/users/${userName}`)).then((response) => response.data);
 }
 
 /**
@@ -38,7 +38,7 @@ export function getUserInfo(userName) {
  * @return {Promise}
  */
 export function getUserRepos(userName, params = {}) {
-  return axios.get(getEndpoint(`/users/${userName}/repos`), { params }).then(response => response.data);
+  return axios.get(getEndpoint(`/users/${userName}/repos`), { params }).then((response) => response.data);
 }
 
 /**
@@ -47,7 +47,7 @@ export function getUserRepos(userName, params = {}) {
  * @return {Promise}
  */
 export function getUserFollowers(userName) {
-  return axios.get(getEndpoint(`/users/${userName}/followers`)).then(response => response.data);
+  return axios.get(getEndpoint(`/users/${userName}/followers`)).then((response) => response.data);
 }
 
 /**
@@ -57,5 +57,5 @@ export function getUserFollowers(userName) {
  * @return {Promise}
  */
 export function getRepoLanguages(userName, repoName) {
-  return axios.get(getEndpoint(`/users/${userName}/${repoName}/languages`)).then(response => response.data);
+  return axios.get(getEndpoint(`/users/${userName}/${repoName}/languages`)).then((response) => response.data);
 }

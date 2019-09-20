@@ -14,9 +14,11 @@ class User extends Component {
     super();
     this.page = 1;
   }
+
   componentDidMount() {
     this.fetchData(this.userName);
   }
+
   componentWillReceiveProps(nextProps) {
     const nextUserName = nextProps.match.params.userName.toLowerCase();
     if (nextUserName !== this.userName) {
@@ -26,19 +28,23 @@ class User extends Component {
       }
     }
   }
+
   get userName() {
     return this.props.match.params.userName.toLowerCase();
   }
-  fetchData(userName) {
-    this.props.fetchUser(userName)
-      .then(() => this.fetchRepos());
-  }
+
   fetchRepos = () => {
     this.props.fetchUserRepos(this.userName, {
       sort: 'updated', direction: 'desc', per_page: PER_PAGE, page: this.page,
     });
     this.page += 1;
   }
+
+  fetchData(userName) {
+    this.props.fetchUser(userName)
+      .then(() => this.fetchRepos());
+  }
+
   render() {
     if (!this.props.user) {
       return null;
@@ -49,7 +55,7 @@ class User extends Component {
           <div className="col w-100 w-sm-80 w-md-50">
             <UserCard
               isFetching={this.props.isUserFetching}
-              {...this.props.user}
+              user={this.props.user}
             />
           </div>
         </div>

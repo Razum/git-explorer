@@ -11,9 +11,13 @@ const Followers = ({ items, total, userName }) => {
   const diff = total - followers.length;
   return (
     <React.Fragment>
-      <strong>Who follows {userName}?</strong>
+      <strong>
+Who follows
+        {userName}
+?
+      </strong>
       <div className={style.followers}>
-        {followers.map(f => <Link key={f.id} className={style.follower} to={`/users/${f.login}`} style={{ backgroundImage: `url(${f.avatar_url})` }} />)}
+        {followers.map((f) => <Link key={f.id} className={style.follower} to={`/users/${f.login}`} style={{ backgroundImage: `url(${f.avatar_url})` }} />)}
         { diff > 0 ? `+ ${diff} more` : '' }
       </div>
     </React.Fragment>

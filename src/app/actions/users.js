@@ -3,7 +3,7 @@ import { showNotification } from './ui';
 import * as Api from '../services/api';
 
 export function fetchUser(userName) {
-  return async dispatch => new Promise(async (resolve, reject) => {
+  return async (dispatch) => new Promise(async (resolve, reject) => {
     dispatch({ type: actionTypes.FETCH_USER });
     try {
       const [user, followers] = await Promise.all([
@@ -21,7 +21,7 @@ export function fetchUser(userName) {
 }
 
 export function fetchUserRepos(userName, params) {
-  return async dispatch => new Promise(async (resolve, reject) => {
+  return async (dispatch) => new Promise(async (resolve, reject) => {
     dispatch({ type: actionTypes.FETCH_USER_REPOS });
     try {
       const repos = await Api.getUserRepos(userName, params);

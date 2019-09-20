@@ -9,7 +9,7 @@ import { GOOGLE_API_KEY } from '../constants/globals';
  * @return {Object}
  */
 export function excludeApiFields(obj) {
-  return omitBy(obj, val => isString(val) && val.includes('api.github.com'));
+  return omitBy(obj, (val) => isString(val) && val.includes('api.github.com'));
 }
 
 /**

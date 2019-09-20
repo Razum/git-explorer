@@ -7,5 +7,5 @@ import sortBy from 'lodash/sortBy';
  * @param {Object} items
  * @return {Array}
  */
-const getSortedRepos = items => sortBy(values(items), i => -(new Date(i.updated_at)).getTime());
+const getSortedRepos = (items) => sortBy(values(items), (i) => -(new Date(i.updated_at)).getTime());
 export default memoize(getSortedRepos);

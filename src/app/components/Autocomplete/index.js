@@ -7,6 +7,7 @@ class Autocomplete extends PureComponent {
   onChange = (evt) => {
     this.props.onChange(evt.target.value);
   }
+
   get results() {
     const { items, value } = this.props;
     if (!items.length && value.length) {
@@ -15,7 +16,7 @@ class Autocomplete extends PureComponent {
     if (!value.length) {
       return null;
     }
-    return <div className={style.results}>{items.map(item => this.renderItem(item))}</div>;
+    return <div className={style.results}>{items.map((item) => this.renderItem(item))}</div>;
   }
 
   renderItem({ login, avatar_url }) {
@@ -27,6 +28,7 @@ class Autocomplete extends PureComponent {
       </Link>
     );
   }
+
   render() {
     const { value, label, placeholder } = this.props;
     return (

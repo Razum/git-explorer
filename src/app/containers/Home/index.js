@@ -17,7 +17,7 @@ class Home extends Component {
     this.delayedOnChange = debounce((searchTerm) => {
       if (searchTerm) {
         searchUsers({ q: searchTerm, per_page: 10 })
-          .then(data => this.setState({ items: data.items }));
+          .then((data) => this.setState({ items: data.items }));
       }
     }, DELAY);
   }

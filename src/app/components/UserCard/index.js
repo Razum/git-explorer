@@ -10,11 +10,11 @@ import style from './usercard.scss';
 
 class UserCard extends PureComponent {
   get location() {
-    if (this.props.location) {
+    if (this.props.user.location) {
       return (
         <div className="row">
           <div className="col w-100">
-            <Location location={this.props.location} />
+            <Location location={this.props.user.location} />
           </div>
         </div>
       );
@@ -23,26 +23,34 @@ class UserCard extends PureComponent {
   }
 
   getField(fieldValue, fieldLabel) {
-    return fieldValue ?
-      <div className={style.field}>
-        <strong>{fieldLabel}: </strong>
-        {fieldValue}
-      </div>
+    return fieldValue
+      ? (
+        <div className={style.field}>
+          <strong>
+            {fieldLabel}
+:
+            {' '}
+          </strong>
+          {fieldValue}
+        </div>
+      )
       : null;
   }
 
   render() {
     const {
-      login,
-      name,
-      email,
-      blog,
-      company,
-      avatar_url,
-      public_repos,
-      public_gists,
-      followers_list,
-      followers,
+      user: {
+        login,
+        name,
+        email,
+        blog,
+        company,
+        avatar_url,
+        public_repos,
+        public_gists,
+        followers_list,
+        followers,
+      },
       isFetching,
     } = this.props;
     const photo = { backgroundImage: `url(${avatar_url})` };
@@ -62,21 +70,37 @@ class UserCard extends PureComponent {
           <div className="col w-100 w-sm-50">
             {this.getField(name, 'Name')}
             {this.getField(login, 'Login')}
-            {email ?
-              <div className={style.field}><strong>Email: </strong> <a href={`mailto:${email}`}>{email}</a></div> : null}
-            {
-              blog ?
+            {email
+              ? (
                 <div className={style.field}>
-                  <strong>Website: </strong>
-                  <a href={blog}>{blog}</a>
-                </div> :
-                null
+                  <strong>Email: </strong>
+                  {' '}
+                  <a href={`mailto:${email}`}>{email}</a>
+                </div>
+              ) : null}
+            {
+              blog
+                ? (
+                  <div className={style.field}>
+                    <strong>Website: </strong>
+                    <a href={blog}>{blog}</a>
+                  </div>
+                )
+                : null
             }
             {this.getField(company, 'Company')}
             <strong>Stats:</strong>
             <div className={`col ${style.stats}`}>
-              <div className={style['stat-item']} title="Repositories"><FaDatabase /> {public_repos}</div>
-              <div className={style['stat-item']} title="Gists"><FaCode /> {public_gists}</div>
+              <div className={style['stat-item']} title="Repositories">
+                <FaDatabase />
+                {' '}
+                {public_repos}
+              </div>
+              <div className={style['stat-item']} title="Gists">
+                <FaCode />
+                {' '}
+                {public_gists}
+              </div>
             </div>
           </div>
         </div>
@@ -89,31 +113,24 @@ class UserCard extends PureComponent {
 }
 
 UserCard.propTypes = {
-  followers_list: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    login: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    followers_list: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      login: PropTypes.string.isRequired,
+      avatar_url: PropTypes.string.isRequired,
+    })).isRequired,
+    followers: PropTypes.number.isRequired,
     avatar_url: PropTypes.string.isRequired,
-  })).isRequired,
-  followers: PropTypes.number.isRequired,
-  avatar_url: PropTypes.string.isRequired,
-  login: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  blog: PropTypes.string,
-  company: PropTypes.string,
-  location: PropTypes.string,
-  public_repos: PropTypes.number,
-  public_gists: PropTypes.number,
+    login: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string,
+    blog: PropTypes.string,
+    company: PropTypes.string,
+    location: PropTypes.string,
+    public_repos: PropTypes.number,
+    public_gists: PropTypes.number,
+  }).isRequired,
   isFetching: PropTypes.bool.isRequired,
-};
-
-UserCard.defaultProps = {
-  email: '',
-  blog: '',
-  company: '',
-  location: '',
-  public_repos: '',
-  public_gists: '',
 };
 
 export default UserCard;

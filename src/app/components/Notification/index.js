@@ -9,14 +9,15 @@ class Notification extends PureComponent {
   onClose = () => {
     this.props.hideNotification();
   }
+
   render() {
     if (!this.props.notification.isShown) {
       return null;
     }
     return (
       <div className={style.notification}>
-        {this.props.notification.messages.map((m, i) => <div key={i}>{m}</div>)}
-        <button className={style.close} onClick={this.onClose}>&#10005;</button>
+        {this.props.notification.messages.map((m) => <div key={m}>{m}</div>)}
+        <button type="button" className={style.close} onClick={this.onClose}>&#10005;</button>
       </div>
     );
   }

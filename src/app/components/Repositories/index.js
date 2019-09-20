@@ -13,9 +13,9 @@ const Repositories = ({
     <div>
       <h4>Repositories:</h4>
       <div className={style.repositories}>
-        {items.map(item => <Repository {...item} key={item.id} />)}
+        {items.map((item) => <Repository repository={item} key={item.id} />)}
         {isFetching && <div className="center">Loading...</div>}
-        {hasMore && !isFetching && <button className={style['load-more']} onClick={loadMore}>Load More</button>}
+        {hasMore && !isFetching && <button type="button" className={style['load-more']} onClick={loadMore}>Load More</button>}
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export default function usersReducer(state = initialState, action) {
       return { ...state, isFetching: false };
     case FETCH_USER_SUCCESS:
       const user = excludeApiFields(action.payload.user);
-      const followers = action.payload.followers.map(follower => excludeApiFields(follower));
+      const followers = action.payload.followers.map((follower) => excludeApiFields(follower));
       const userName = action.payload.user.login.toLowerCase();
       return {
         ...state,

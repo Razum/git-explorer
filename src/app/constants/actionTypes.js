@@ -1,12 +1,10 @@
-export const EXAMPLE_ACTION = 'EXAMPLE_ACTION';
+import { defineAction } from 'redux-define';
+import { PENDING, SUCCESS, ERROR } from './states';
 
-export const FETCH_USER = 'FETCH_USER';
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export const FETCH_USER_FAIL = 'FETCH_USER_FAIL';
+const REQUEST_STATES = [PENDING, SUCCESS, ERROR];
 
-export const FETCH_USER_REPOS = 'FETCH_USER_REPOS';
-export const FETCH_USER_REPOS_SUCCESS = 'FETCH_USER_REPOS_SUCCESS';
-export const FETCH_USER_REPOS_FAIL = 'FETCH_USER_REPOS_FAIL';
+export const FETCH_USER = defineAction('FETCH_USER', REQUEST_STATES);
+export const FETCH_USER_REPOS = defineAction('FETCH_USER_REPOS', REQUEST_STATES);
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';

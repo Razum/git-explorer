@@ -1,30 +1,14 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import FaDatabase from 'react-icons/lib/fa/database';
-import FaCode from 'react-icons/lib/fa/code';
-import Location from './Location';
+import { FaCode, FaDatabase } from 'react-icons/fa';
 import Followers from './Followers';
-import Skeleton from './Skeleton';
 
 import style from './usercard.scss';
 
 class UserCard extends PureComponent {
-  get location() {
-    if (this.props.user.location) {
-      return (
-        <div className="row">
-          <div className="col w-100">
-            <Location location={this.props.user.location} />
-          </div>
-        </div>
-      );
-    }
-    return null;
-  }
-
   getField(fieldValue, fieldLabel) {
-    return fieldValue
-      ? (
+    if (fieldValue) {
+      return (
         <div className={style.field}>
           <strong>
             {fieldLabel}
@@ -33,8 +17,9 @@ class UserCard extends PureComponent {
           </strong>
           {fieldValue}
         </div>
-      )
-      : null;
+      );
+    }
+    return null;
   }
 
   render() {
@@ -45,21 +30,15 @@ class UserCard extends PureComponent {
         email,
         blog,
         company,
+        location,
         avatar_url,
         public_repos,
         public_gists,
         followers_list,
         followers,
-      },
-      isFetching,
+      }
     } = this.props;
     const photo = { backgroundImage: `url(${avatar_url})` };
-    if (isFetching) {
-      return <Skeleton />;
-    }
-    if (!login) {
-      return null;
-    }
 
     return (
       <div className={style.usercard}>
@@ -88,6 +67,7 @@ class UserCard extends PureComponent {
                 )
                 : null
             }
+            {this.getField(location, 'Location')}
             {this.getField(company, 'Company')}
             <strong>Stats:</strong>
             <div className={`col ${style.stats}`}>
@@ -105,8 +85,6 @@ class UserCard extends PureComponent {
           </div>
         </div>
         <Followers items={followers_list} total={followers} userName={login} />
-        {this.location}
-
       </div>
     );
   }
@@ -129,8 +107,7 @@ UserCard.propTypes = {
     location: PropTypes.string,
     public_repos: PropTypes.number,
     public_gists: PropTypes.number,
-  }).isRequired,
-  isFetching: PropTypes.bool.isRequired,
+  }).isRequired
 };
 
 export default UserCard;

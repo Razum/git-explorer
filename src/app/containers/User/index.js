@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchUser, fetchUserRepos } from '../../actions/users';
 import getSortedReposSelector from '../../services/selectors';
 import UserCard from '../../components/UserCard';
+import Skeleton from '../../components/UserCard/Skeleton';
 import Repositories from '../../components/Repositories';
 
 const PER_PAGE = 5;
@@ -19,18 +20,30 @@ class User extends Component {
     this.fetchData(this.userName);
   }
 
-  componentWillReceiveProps(nextProps) {
-    const nextUserName = nextProps.match.params.userName.toLowerCase();
-    if (nextUserName !== this.userName) {
+  componentDidUpdate(prevProps) {
+    const prevUserName = prevProps.match.params.userName.toLowerCase();
+    const currUserName = this.props.match.params.userName.toLowerCase();
+    if (prevUserName !== currUserName) {
       this.page = 1;
-      if (!this.props.users[nextUserName]) {
-        this.fetchData(nextUserName);
+      if (!this.props.users[currUserName]) {
+        this.fetchData(currUserName);
       }
     }
   }
 
   get userName() {
     return this.props.match.params.userName.toLowerCase();
+  }
+
+  get userCard() {
+    if (this.props.isUserFetching || !this.props.user) {
+      return <Skeleton />;
+    }
+    return (
+      <UserCard
+        user={this.props.user}
+      />
+    );
   }
 
   fetchRepos = () => {
@@ -46,17 +59,11 @@ class User extends Component {
   }
 
   render() {
-    if (!this.props.user) {
-      return null;
-    }
     return (
       <div className="container py5">
         <div className="row row--center">
           <div className="col w-100 w-sm-80 w-md-50">
-            <UserCard
-              isFetching={this.props.isUserFetching}
-              user={this.props.user}
-            />
+            {this.userCard}
           </div>
         </div>
         <div className="row">
@@ -83,9 +90,9 @@ function mapStateToProps(state, props) {
   return {
     user: state.users.items[userName],
     users: state.users.items,
-    isUserFetching: state.users.isFetching,
+    isUserFetching: state.loading.fetchUserLoading,
     repos: getSortedReposSelector(state.repos.items[userName]),
-    isReposFetching: state.repos.isFetching,
+    isReposFetching: state.loading.fetchUserLoading,
   };
 }
 
@@ -95,8 +102,8 @@ User.propTypes = {
   repos: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   user: PropTypes.shape({}),
   users: PropTypes.shape({}).isRequired,
-  isUserFetching: PropTypes.bool.isRequired,
-  isReposFetching: PropTypes.bool.isRequired,
+  isUserFetching: PropTypes.bool,
+  isReposFetching: PropTypes.bool,
   match: PropTypes.shape({
     params: PropTypes.shape({
       userName: PropTypes.string,
@@ -106,6 +113,8 @@ User.propTypes = {
 
 User.defaultProps = {
   user: null,
+  isUserFetching: false,
+  isReposFetching: false,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(User);

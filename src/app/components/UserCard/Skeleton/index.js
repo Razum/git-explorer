@@ -7,7 +7,7 @@ const Skeleton = () => (
       <div className="col w-100 w-sm-50 mb3">
         <div className={`${style.photo} ${style.animated}`} />
       </div>
-      <div className="col w-100 w-sm-66">
+      <div className="col w-100 w-sm-50">
         <div className={`${style.text} ${style.animated}`} />
         <div className={`${style.text} ${style.animated}`} />
         <div className={`${style.text} ${style.animated}`} />
@@ -23,7 +23,6 @@ const Skeleton = () => (
       <div className={`${style.avatar} ${style.animated}`} />
       <div className={`${style.avatar} ${style.animated}`} />
     </div>
-    <div className={`${style.map} ${style.animated}`} />
   </div>
 );
 

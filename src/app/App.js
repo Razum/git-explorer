@@ -6,7 +6,7 @@ import {
 import history from './services/history';
 
 import Header from './components/Header';
-
+import Notification from './components/Notification';
 import Home from './containers/Home';
 import User from './containers/User';
 import NoMatch from './containers/NoMatch';
@@ -14,8 +14,9 @@ import NoMatch from './containers/NoMatch';
 
 const App = () => (
   <div className="app-node">
-    <Header />
+    <Notification />
     <Router history={history}>
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/users/:userName" component={User} />

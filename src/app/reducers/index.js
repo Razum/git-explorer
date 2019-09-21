@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import usersReducer from './users';
-import reposReducer from './repos';
-import uiReducer from './ui';
+import users from './users';
+import repos from './repos';
+import ui from './ui';
+import loading from './loading';
 
 export default combineReducers({
-  users: usersReducer,
-  repos: reposReducer,
-  ui: uiReducer,
+  users,
+  repos,
+  ui,
+  loading
 });

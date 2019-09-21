@@ -5,6 +5,7 @@ import style from './autocomplete.scss';
 
 class Autocomplete extends PureComponent {
   onChange = (evt) => {
+    evt.preventDefault();
     this.props.onChange(evt.target.value);
   }
 
@@ -32,7 +33,7 @@ class Autocomplete extends PureComponent {
   render() {
     const { value, label, placeholder } = this.props;
     return (
-      <div className={style.autocomplete}>
+      <form autoComplete="off" className={style.autocomplete}>
         <label className={style.label} htmlFor="autocomplete">{label}</label>
         <input
           id="autocomplete"
@@ -42,7 +43,7 @@ class Autocomplete extends PureComponent {
           onChange={this.onChange}
         />
         {this.results}
-      </div>
+      </form>
     );
   }
 }

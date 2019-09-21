@@ -45,12 +45,9 @@
   border-top: none;
   padding: 0.25em 1.5em;
   background-color: #fff;
-  transition: all 0.25s linear;
 
   &:hover {
-    z-index: 1;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-    transform: scale(1.01);
+    background-color: #efefef;
   }
 }
 

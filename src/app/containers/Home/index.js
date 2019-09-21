@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
-import { MdBlurOn, MdCloudUpload, MdExtension } from 'react-icons/lib/md';
+import { MdBlurOn, MdCloudUpload, MdExtension } from 'react-icons/md';
 import Autocomplete from '../../components/Autocomplete';
 import Tile from '../../components/Tile';
 import { searchUsers } from '../../services/api';

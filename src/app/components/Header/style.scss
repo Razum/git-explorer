@@ -36,9 +36,11 @@
     color: color(white);
     text-decoration: none;
     padding: 0 0.5rem;
+    transition: transform 0.2s ease;
 
     &:hover {
       text-decoration: underline;
+      transform: scale(1.25);
     }
   }
 }

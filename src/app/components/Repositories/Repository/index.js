@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaCodeFork from 'react-icons/lib/fa/code-fork';
-import FaEye from 'react-icons/lib/fa/eye';
-import FaStar from 'react-icons/lib/fa/star';
-import FaBug from 'react-icons/lib/fa/bug';
+import { FaBug, FaEye, FaStar } from 'react-icons/fa';
+import { GoGitBranch } from 'react-icons/go';
 import style from './repository.scss';
 
 const Repository = ({
@@ -16,7 +14,7 @@ const Repository = ({
     {description && <div className={style.description}>{description}</div>}
     <div className={style.stats}>
       <div className={style.stat} title="Forks">
-        <FaCodeFork />
+        <GoGitBranch />
         {' '}
         {forks_count}
       </div>

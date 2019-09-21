@@ -13,6 +13,7 @@ const Followers = ({ items, total, userName }) => {
     <React.Fragment>
       <strong>
 Who follows
+        {' '}
         {userName}
 ?
       </strong>

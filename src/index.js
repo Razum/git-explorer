@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import rootReducer from './app/reducers';
@@ -9,20 +9,13 @@ import App from './app/App';
 import registerServiceWorker from './app/services/registerServiceWorker';
 import './styles/main.scss';
 
-
-const initialState = {};
-
-if (window.__INITIAL_STATE__) {
-  const state = window.__INITIAL_STATE__;
-  // eslint-disable-next-line no-console
-  Object.keys(state).forEach((key) => {
-    initialState[key] = state[key];
-  });
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  applyMiddleware(thunk),
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
 );
 
 ReactDOM.render(
